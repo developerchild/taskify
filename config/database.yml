@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: 127.0.0.1
+  username: postgres
+  password: root
+  port: 5432
+
+development:
+  <<: *default
+  database: <%= ENV.fetch("DEVELOPMENT_DATABASE") { "taskify_dev" } %>
+
+test:
+  <<: *default
+  database: <%= ENV.fetch("TEST_DATABASE") { "test_db" } %>
+
+production:
+  <<: *default
